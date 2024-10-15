@@ -6,6 +6,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "jsx": "react-jsx",
+    "types": ["node"],
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,

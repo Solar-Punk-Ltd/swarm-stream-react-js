@@ -1,5 +1,5 @@
 {
-  "name": "swarm-stream-react-js",
+  "name": "@solarpunkltd/swarm-stream-react-js",
   "version": "0.0.1",
   "description": "A React + Node.js library for streaming on Swarm",
   "main": "dist/index.js",
@@ -38,6 +38,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@types/node": "^22.7.5",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
