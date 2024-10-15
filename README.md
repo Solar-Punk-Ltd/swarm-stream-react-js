@@ -2,9 +2,9 @@ A streaming library for Swarm that enables media streaming and playback (watchin
 
 # Watch
 
-```
 To play a stream, first initialize a player Bee node. This node handles all requests related to playing the stream. Then, you can use the VideoPlayer component.
 
+```
 import { playerBee, VideoPlayer } from 'swarm-stream-react-js';
 
 playerBee.setBee('http://localhost:1633');
@@ -13,24 +13,19 @@ playerBee.setBee('http://localhost:1633');
 
 # Stream
 
-```
 To stream media, initialize a streamer Bee node. This node manages requests related to streaming.
 
+```
 import { isStreamOngoing, startStream, stopStream, streamBee } from 'swarm-stream-react-js';
 
 streamBee.setBee('http://localhost:1633');
 
 async function startStream(
-  signer: Signer,
-  topic: string,
-  stamp: BatchId,
-  options: Options
+  signer: Signer, // To continuously write to Swarm feeds, a Signer (public and private key pair) must be provided.
+  topic: string, // A unique topic name. This is required for playing the stream via the VideoPlayer.
+  stamp: BatchId, // A valid BatchId for writing to Swarm.
+  options: Options // Configuration for the stream.
 ): Promise<void>;
-
-Signer: To continuously write to Swarm feeds, a Signer (public and private key pair) must be provided.
-Topic: A unique topic name. This is required for playing the stream via the VideoPlayer.
-Stamp: A valid BatchId for writing to Swarm.
-Options: Configuration for the stream:
 
 interface Options {
   video: boolean; // Whether to include video in the stream
@@ -39,16 +34,13 @@ interface Options {
   videoBitsPerSecond: number; // Defines the video quality of the stream
 }
 
-
 function stopStream(): void;
 function isStreamOngoing(): boolean;
-
 
 ```
 
 # Limitations
 
-```
 Currently, the following browser features are required:
 
 - 'video/webm; codecs=vp9,opus' (the library is specific to WebM format)
@@ -58,11 +50,9 @@ Currently, the following browser features are required:
 - SourceBuffer: Used for appending media segments
 
 Tests have primarily been conducted using Chrome.
-```
 
 # How it works?
 
-```
 Streamer Side
 ------------
 A new Swarm feed is created.
@@ -77,11 +67,10 @@ It then waits for a cluster start (keyframe), ensuring that the cluster is clean
 The player starts appending subsequent segments in order once the cluster is established.
 
 Helpful docs:
-https://docs.ethswarm.org/docs/develop/tools-and-features/feeds#what-are-feeds
-https://www.webmproject.org/
-https://en.wikipedia.org/wiki/Extensible_Binary_Meta_Language
+- https://docs.ethswarm.org/docs/develop/tools-and-features/feeds#what-are-feeds
+- https://www.webmproject.org/
+- https://en.wikipedia.org/wiki/Extensible_Binary_Meta_Language
 
 An example demo project to demonstrate a simple use case:
 https://github.com/Solar-Punk-Ltd/ethercast
 
-```
